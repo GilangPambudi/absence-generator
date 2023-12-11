@@ -1,4 +1,9 @@
 function generateBBcode() {
+
+    if (!validateForm()) {
+        return;
+    }
+
     // A — Employee Information
     var fullName = document.getElementById("fullName").value;
     var position = document.getElementById("position").value;
@@ -65,6 +70,12 @@ Employee Signature:
 
     // Set the generated BBcode to the textarea
     document.getElementById("generatedBBcode").value = generatedBBcode;
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Generated!',
+        text: 'BBcode has been generated successfully.',
+    });
 }
 
 function getValueById(elementId) {
@@ -85,4 +96,33 @@ function copyToClipboard() {
         showConfirmButton: false,
         timer: 1500  // Auto close after 1.5 seconds
     });
+}
+
+function validateForm() {
+    var fields = [
+        "fullName", "position", "employeeBadge", "departmentServing",
+        "typeOfAbsence", "reasonOfAbsence", "dateOfLeave", "dateOfReturn", "numberOfDaysAway",
+        "oocReasonOfAbsence", "employeeSignature"
+    ];
+
+    for (var i = 0; i < fields.length; i++) {
+        var fieldValue = document.getElementById(fields[i]).value.trim();
+
+        if (!fieldValue) {
+            // Tampilkan pesan kesalahan
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Please fill in all fields.',
+            });
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function tryGenerateBBcode() {
+    generateBBcode();
 }
