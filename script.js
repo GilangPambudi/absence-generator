@@ -23,6 +23,8 @@ function generateBBcode() {
     // Employee Signature
     var employeeSignature = document.getElementById("employeeSignature").value;
 
+    var today = new Date().toLocaleDateString('en-GB');
+
     // Generated BBcode
     var generatedBBcode = `
 [divbox=white][center][img]https://i.postimg.cc/RFd9JsR5/safdjg-2020-resized-2.png[/img]
@@ -59,7 +61,7 @@ function generateBBcode() {
 [b]DATE:[/b] DD/MM/YY[/aligntable]
 Employee Signature: 
 [i]${employeeSignature}[/i]
-[b]DATE:[/b] DD/MM/YY
+[b]DATE:[/b] ${today}
 
 [hr]
 [divbox=black][aligntable=right,0,0,0,0,0,transparent][img]https://i.postimg.cc/V6qpRTsK/SAFD-LOGO-MINI2.png[/img][/aligntable][size=140][b][color=white](( [font=times new roman]C — Out of Character Information[/font] ))[/color][/b][/size][/divbox][list=none]
@@ -126,3 +128,55 @@ function validateForm() {
 function tryGenerateBBcode() {
     generateBBcode();
 }
+
+// Memanggil fungsi ini setiap kali pilihan "Department Serving" berubah
+function updatePositionOptions() {
+    var departmentServing = document.getElementById("departmentServing").value;
+    var positionSelect = document.getElementById("position");
+
+    // Mengosongkan dan menonaktifkan opsi "Position"
+    positionSelect.innerHTML = '';
+    positionSelect.disabled = true;
+
+    // Menambahkan opsi "Select Rank"
+    var selectRankOption = document.createElement("option");
+    selectRankOption.disabled = true;
+    selectRankOption.selected = true;
+    selectRankOption.appendChild(document.createTextNode("Select Rank"));
+    positionSelect.appendChild(selectRankOption);
+
+    // Menambahkan opsi berdasarkan "Department Serving"
+    if (departmentServing === "Field") {
+        addPositionOption("Battalion Chief");
+        addPositionOption("Captain");
+        addPositionOption("Lieutenant");
+        addPositionOption("Engineer");
+        addPositionOption("Senior Firefighter");
+        addPositionOption("Junior Firefighter");
+        addPositionOption("Cadet");
+    } else if (departmentServing === "Hospital") {
+        addPositionOption("Hospital Executive");
+        addPositionOption("Executive Assistant");
+        addPositionOption("Medical Director");
+        addPositionOption("Attending Physician");
+        addPositionOption("Fellow");
+        addPositionOption("Senior Resident");
+        addPositionOption("Resident");
+    }
+
+    // Mengaktifkan opsi "Position" jika "Department Serving" telah dipilih
+    if (departmentServing !== "") {
+        positionSelect.disabled = false;
+    }
+}
+
+// Fungsi bantu untuk menambahkan opsi "Position"
+function addPositionOption(position) {
+    var positionOption = document.createElement("option");
+    positionOption.value = position;
+    positionOption.appendChild(document.createTextNode(position));
+    document.getElementById("position").appendChild(positionOption);
+}
+
+// Panggil fungsi updatePositionOptions() setiap kali "Department Serving" berubah
+document.getElementById("departmentServing").addEventListener("change", updatePositionOptions);
