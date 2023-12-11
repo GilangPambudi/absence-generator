@@ -13,9 +13,9 @@ function generateBBcode() {
     // B — Absence Details
     var typeOfAbsence = document.getElementById("typeOfAbsence").value;
     var reasonOfAbsence = document.getElementById("reasonOfAbsence").value;
-    var dateOfLeave = new Date(document.getElementById("dateOfLeave").value).toLocaleDateString('en-GB');
-    var dateOfReturn = new Date(document.getElementById("dateOfReturn").value).toLocaleDateString('en-GB');
-    var numberOfDaysAway = document.getElementById("numberOfDaysAway").value;
+    var dateOfLeave = new Date(document.getElementById("dateOfLeave").value);
+    var dateOfReturn = new Date(document.getElementById("dateOfReturn").value);
+    var numberOfDaysAway = calculateDaysAway(dateOfLeave, dateOfReturn);
     
     // Out of Character Information
     var oocReasonOfAbsence = document.getElementById("oocReasonOfAbsence").value;
@@ -50,8 +50,8 @@ function generateBBcode() {
 [b][color=#bf4000]B1.[/color] Type of Absence:[/b] ${typeOfAbsence}
 [b][color=#bf4000]B2.[/color] Reason of Absence:[/b] ${reasonOfAbsence}
 
-[b][color=#bf4000]B3.[/color] Date of Leave:[/b] ${dateOfLeave}
-[b][color=#bf4000]B4.[/color] Date of Return:[/b] ${dateOfReturn}
+[b][color=#bf4000]B3.[/color] Date of Leave:[/b] ${dateOfLeave.toLocaleDateString('en-GB')}
+[b][color=#bf4000]B4.[/color] Date of Return:[/b] ${dateOfReturn.toLocaleDateString('en-GB')}
 [b][color=#bf4000]B5.[/color] Number of Day(s) Away:[/b] ${numberOfDaysAway} days
 [/list]
 
@@ -103,7 +103,7 @@ function copyToClipboard() {
 function validateForm() {
     var fields = [
         "fullName", "position", "employeeBadge", "departmentServing",
-        "typeOfAbsence", "reasonOfAbsence", "dateOfLeave", "dateOfReturn", "numberOfDaysAway",
+        "typeOfAbsence", "reasonOfAbsence", "dateOfLeave", "dateOfReturn",
         "oocReasonOfAbsence", "employeeSignature"
     ];
 
@@ -211,3 +211,13 @@ function addPositionOption(position) {
 
 // Panggil fungsi updatePositionOptions() setiap kali "Department Serving" berubah
 document.getElementById("departmentServing").addEventListener("change", updatePositionOptions);
+
+function calculateDaysAway(dateOfLeave, dateOfReturn) {
+    // Hitung selisih waktu dalam milidetik
+    var timeDifference = dateOfReturn - dateOfLeave;
+
+    // Konversi selisih waktu menjadi jumlah hari
+    var daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysDifference;
+}
