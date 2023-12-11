@@ -6,9 +6,7 @@ function generateBBcode() {
 
     // A — Employee Information
     var fullName = document.getElementById("fullName").value;
-    var position = document.getElementById("position").value;
     var employeeBadge = document.getElementById("employeeBadge").value;
-    var departmentServing = document.getElementById("departmentServing").value;
 
     // B — Absence Details
     var typeOfAbsence = document.getElementById("typeOfAbsence").value;
@@ -120,6 +118,37 @@ function validateForm() {
 
             return false;
         }
+    }
+
+   // Periksa "Department Serving"
+   var departmentServingValue = document.getElementById("departmentServing").value;
+   if (!departmentServingValue || departmentServingValue === "Select Department Serving") {
+       Swal.fire({
+           icon: 'error',
+           title: 'Error',
+           text: 'Please select a valid Department Serving.',
+       });
+       return false;
+   }
+
+    var positionValue = document.getElementById("position").value;
+    if (!positionValue || positionValue === "Select Rank") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please select a valid Position.',
+        });
+        return false;
+    }
+
+    var typeOfAbsence = document.getElementById("typeOfAbsence").value;
+    if (!typeOfAbsence || typeOfAbsence === "Select Type of Absence") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please select a valid Type of Absence.',
+        });
+        return false;
     }
 
     return true;
