@@ -76,7 +76,7 @@ Employee Signature:
     Swal.fire({
         icon: 'success',
         title: 'Generated!',
-        text: 'BBcode has been generated successfully.',
+        text: 'BBcode has been generated successfully',
     });
 }
 
@@ -86,6 +86,15 @@ function getValueById(elementId) {
 }
 
 function copyToClipboard() {
+    if (document.getElementById("generatedBBcode").value === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please generate BBcode first!',
+        });
+        return false;
+    }
+
     var textarea = document.getElementById("generatedBBcode");
     textarea.select();
     document.execCommand("copy");
@@ -94,7 +103,7 @@ function copyToClipboard() {
     Swal.fire({
         icon: 'success',
         title: 'Copied!',
-        text: 'Generated BBcode has been copied to the clipboard.',
+        text: 'Generated BBcode has been copied to the clipboard',
         showConfirmButton: false,
         timer: 1500  // Auto close after 1.5 seconds
     });
@@ -115,7 +124,7 @@ function validateForm() {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Please fill in all fields.',
+                text: 'Please fill in all fields!',
             });
 
             return false;
@@ -128,27 +137,29 @@ function validateForm() {
        Swal.fire({
            icon: 'error',
            title: 'Error',
-           text: 'Please select a valid Department Serving.',
+           text: 'Please select a valid Department Serving!',
        });
        return false;
    }
 
+    // Periksa "Position"
     var positionValue = document.getElementById("position").value;
     if (!positionValue || positionValue === "Select Rank") {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Please select a valid Position.',
+            text: 'Please select a valid Position!',
         });
         return false;
     }
 
+    // Periksa "Type of Absence"
     var typeOfAbsence = document.getElementById("typeOfAbsence").value;
     if (!typeOfAbsence || typeOfAbsence === "Select Type of Absence") {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Please select a valid Type of Absence.',
+            text: 'Please select a valid Type of Absence!',
         });
         return false;
     }
