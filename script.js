@@ -7,6 +7,8 @@ function generateBBcode() {
     // A — Employee Information
     var fullName = document.getElementById("fullName").value;
     var employeeBadge = document.getElementById("employeeBadge").value;
+    var departmentServing = document.getElementById("departmentServing").value;
+    var position = document.getElementById("position").value;
 
     // B — Absence Details
     var typeOfAbsence = document.getElementById("typeOfAbsence").value;
