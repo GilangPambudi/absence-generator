@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=icon href="https://i.postimg.cc/RFd9JsR5/safdjg-2020-resized-2.png">
+    <title>Absence BBcode Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <div class="text-center" id="title">
+        <h1 class="mb-4">Absence BBcode Generator</h1>
+    </div>
+    
+</head>
+<body class="container mt-4">
+
+    <div class="employeeInformation mt-4">
+        <h3>A — Employee Information</h3>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="position">Position</label>
+                <select class="form-control" id="position">
+                    <option disabled selected>Select Rank</option>
+                    <option value="Battalion Chief">Battalion Chief</option>
+                    <option value="Captain">Captain</option>
+                    <option value="Lieutenant">Lieutenant</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Senior Firefighter">Senior Firefighter</option>
+                    <option value="Junior Firefighter">Junior Firefighter</option>
+                    <option value="Cadet">Cadet</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="employeeBadge">Employee #</label>
+                <input type="text" class="form-control" id="employeeBadge">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="departmentServing">Department Serving</label>
+                <select class="form-control" id="departmentServing">
+                    <option disabled selected>Select Department Serving</option>
+                    <option value="Field">Field</option>
+                    <option value="Hospital">Hospital</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="absenceDetails mt-4">
+        <h3>B — Absence Details</h3>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="typeOfAbsence">Type of Absence</label>
+                <select class="form-control" id="typeOfAbsence">
+                    <option disabled selected>Select Type of Absence</option>
+                    <option value="Full Absence">Full Absence</option>
+                    <option value="Part Absence">Part Absence</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="reasonOfAbsence">Reason of Absence</label>
+                <input type="text" class="form-control" id="reasonOfAbsence">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="dateOfLeave">Date of Leave</label>
+                <input type="date" class="form-control" id="dateOfLeave">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="dateOfReturn">Date of Return</label>
+                <input type="date" class="form-control" id="dateOfReturn">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="numberOfDaysAway">Number of Day(s) Away</label>
+                <input type="text" class="form-control" id="numberOfDaysAway">
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="employeeSignature">Employee Signature (Name / URL)</label>
+                <input type="text" class="form-control" id="employeeSignature">
+            </div>
+        </div>
+    </div>
+
+    <div class="OutOfCharacterInformation mt-4">
+        <h3>(( C — Out of Character Information ))</h3>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="oocReasonOfAbsence">(( Reason of Absence ))</label>
+                <input type="text" class="form-control" id="oocReasonOfAbsence">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary mr-2" onclick="generateBBcode()">Generate</button>
+        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
+    </div>
+
+    <div class="generatedBBcode mt-4 mb-4">
+        <h3 class="mt-4">Result</h3>
+        <textarea id="generatedBBcode" class="form-control" rows="4" readonly></textarea>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
