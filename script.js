@@ -52,7 +52,7 @@ function generateBBcode() {
 
 [b][color=#bf4000]B3.[/color] Date of Leave:[/b] ${dateOfLeave}
 [b][color=#bf4000]B4.[/color] Date of Return:[/b] ${dateOfReturn}
-[b][color=#bf4000]B5.[/color] Number of Day(s) Away:[/b] ${numberOfDaysAway}
+[b][color=#bf4000]B5.[/color] Number of Day(s) Away:[/b] ${numberOfDaysAway} days
 [/list]
 
 [hr][/hr]
