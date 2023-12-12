@@ -96,14 +96,22 @@
 
     <div class="text-center">
         <button class="btn btn-primary mr-2" onclick="generateBBcode()">Generate</button>
-        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
     </div>
 
     <div class="generatedBBcode mt-4 mb-4">
+        <h4 class="mt-4">Subject</h4>
+        <div class="d-flex">
+            <textarea id="subject" class="form-control" rows="1" readonly></textarea>
+            <button class="btn btn-success ml-2" onclick="copySubjectToClipboard()">Copy</button>
+        </div>
+        <br>
         <h4 class="mt-4">Result</h4>
-        <textarea id="generatedBBcode" class="form-control" rows="4" readonly></textarea>
-    </div>
-
+        <div class="input-group">
+            <textarea id="generatedBBcode" class="form-control" rows="4" readonly></textarea>
+            <button class="btn btn-success ml-2" onclick="copyToClipboard()">Copy</button>
+        </div>
+    </div>    
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

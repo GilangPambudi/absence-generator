@@ -26,8 +26,7 @@ function generateBBcode() {
     var today = new Date().toLocaleDateString('en-GB');
 
     // Generated BBcode
-    var generatedBBcode = `
-[divbox=white][center][img]https://i.postimg.cc/RFd9JsR5/safdjg-2020-resized-2.png[/img]
+    var generatedBBcode = `[divbox=white][center][img]https://i.postimg.cc/RFd9JsR5/safdjg-2020-resized-2.png[/img]
 [size=150][b][font=times new roman]SAN ANDREAS FIRE DEPARTMENT[/font][/b][/size]
 [font=times new roman]HEADQUARTERS[/font]
 [font=times new roman]CITY OF LOS SANTOS * 225 DOWNTOWN STREET COR. DOWNTOWN AVENUE * LOS SANTOS SA 55164[/font][/center]
@@ -73,6 +72,10 @@ Employee Signature:
     // Set the generated BBcode to the textarea
     document.getElementById("generatedBBcode").value = generatedBBcode;
 
+    var generatedSubject = `[${typeOfAbsence}] ${fullName} [${dateOfLeave.toLocaleDateString('en-GB')} - ${dateOfReturn.toLocaleDateString('en-GB')}]`; 
+    document.getElementById("subject").value = generatedSubject;
+
+
     Swal.fire({
         icon: 'success',
         title: 'Generated!',
@@ -103,7 +106,7 @@ function copyToClipboard() {
     Swal.fire({
         icon: 'success',
         title: 'Copied!',
-        text: 'Generated BBcode has been copied to the clipboard',
+        text: 'Result has been copied to the clipboard',
         showConfirmButton: false,
         timer: 1500  // Auto close after 1.5 seconds
     });
@@ -231,4 +234,28 @@ function calculateDaysAway(dateOfLeave, dateOfReturn) {
     var daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
     return daysDifference;
+}
+
+function copySubjectToClipboard() {
+    var subjectTextarea = document.getElementById("subject");
+    
+    if (subjectTextarea.value === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please generate BBcode first!',
+        });
+        return false;
+    }
+
+    subjectTextarea.select();
+    document.execCommand("copy");
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Copied!',
+        text: 'Subject has been copied to the clipboard',
+        showConfirmButton: false,
+        timer: 1500  // Auto close after 1.5 seconds
+    });
 }
