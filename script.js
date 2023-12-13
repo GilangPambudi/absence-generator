@@ -106,7 +106,7 @@ function copyToClipboard() {
     Swal.fire({
         icon: 'success',
         title: 'Copied!',
-        text: 'Result has been copied to the clipboard',
+        text: 'Generated BBCode has been copied to the clipboard',
         showConfirmButton: false,
         timer: 1500  // Auto close after 1.5 seconds
     });
